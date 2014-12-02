@@ -1,6 +1,6 @@
-# Event::Log::Sdk
+# EventLog::Client
 
-TODO: Write a gem description
+A Ruby interface to the EventLog API.
 
 ## Installation
 
@@ -20,8 +20,24 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+client = EventLog::Client.new host: 'http://lvh.me:3000', token: '1:RkPYCtz7v9p-KHh7LCxv', version: 'v1'
 
+event = { 
+  name: 'Order',
+  category: 'CRM',
+  content: 'price 20=>30',
+  event: 'update',
+  operator: 'yp',
+  operator_id: 'yuanping@fishtrip.cn',
+  link: 'http://fishtrip.cn'
+}
+
+client.create_event_log event.to_json
+
+client.event_logs
+
+```
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/event-log-sdk/fork )
