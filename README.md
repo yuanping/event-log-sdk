@@ -7,16 +7,13 @@ A Ruby interface to the EventLog API.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'event-log-sdk'
+gem 'event-log-sdk', git: 'git://github.com/yuanping/event-log-sdk.git'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install event-log-sdk
 
 ## Usage
 
@@ -35,6 +32,7 @@ event = {
 
 client.create_event_log event.to_json
  #=> success response code: 201
+ 
 client.event_logs
  #=> [{name: 'Order', content: 'update price: 20 => 30', ...}, {...}]
 ```
