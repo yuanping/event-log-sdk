@@ -6,7 +6,8 @@ require "minitest/autorun"
       @client = EventLog::Client.new host: 'http://lvh.me:3000', token: '1:RkPYCtz7v9p-KHh7LCxv'
       
       @log_hash = { 
-        name: 'Order',
+        model_name: 'Order',
+        model_id: '1',
         category: 'CRM',
         content: 'price 20=>30',
         event: 'update',
@@ -35,6 +36,11 @@ require "minitest/autorun"
         @client.token = "1:invalidtoken"
         res = @client.create_event_log @log_hash.to_json
         res.status.must_equal 401
+      end
+      
+      it "should be success when type is persist" do
+        res = @client.create_event_log @log_hash.merge(type: 'persist').to_json
+        res.status.must_equal 201
       end
     end
     

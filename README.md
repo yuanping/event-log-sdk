@@ -21,7 +21,8 @@ And then execute:
 client = EventLog::Client.new host: 'http://lvh.me:3000', token: '1922:RkPYCtz7v9p-KHh7LCxv', version: 'v1'
 
 event = { 
-  name: 'Order',
+  model_name: 'Order',
+  model_id: '1',
   category: 'CRM',
   content: 'price 20=>30',
   event: 'update',
@@ -34,7 +35,7 @@ client.create_event_log event.to_json
  #=> success response code: 201
  
 client.event_logs
- #=> [{name: 'Order', content: 'update price: 20 => 30', ...}, {...}]
+ #=> [{model_name: 'Order', model_id: '1', content: 'update price: 20 => 30', ...}, {...}]
 ```
 ## Contributing
 
