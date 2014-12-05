@@ -25,7 +25,7 @@ module EventLog
       self.token = opts.delete :token
       version = opts.delete(:version) || 'v1'
       
-      url = host << "/api/#{version}/"
+      url = host + "/api/#{version}/"
       
       @conn ||= Faraday.new(:url => url) do |faraday|
         faraday.headers['Content-Type'] = 'application/json'
