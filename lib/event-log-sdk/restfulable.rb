@@ -14,11 +14,21 @@ module EventLog
         names = name.pluralize
         define_method "#{names}" do |*args|
           opts = args.first || Hash.new
-          @conn.get("#{names}.json", default_params.merge(opts))
+          res = @conn.get("#{names}.json", default_params.merge(opts))
+          if res.status == 200
+            res.body
+          elsif res.status == 401
+            '认证失败'
+          end
         end
   
         define_method name do |id|
-          @conn.get("#{names}/#{id}.json", default_params.merge(opts))
+          res = @conn.get("#{names}/#{id}.json", default_params.merge(opts))
+          if res.status == 200
+            res.body
+          elsif res.status == 401
+            '认证失败'
+          end
         end
   
         define_method "create_#{name}" do |json|
