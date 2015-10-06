@@ -1,3 +1,4 @@
+#encoding: utf-8
 require "active_support/core_ext/string/inflections"
 
 module EventLog
@@ -18,7 +19,7 @@ module EventLog
           if res.status == 200
             res.body
           elsif res.status == 401
-            '认证失败'
+            'Unauthorized'
           end
         end
   
@@ -27,7 +28,7 @@ module EventLog
           if res.status == 200
             res.body
           elsif res.status == 401
-            '认证失败'
+            'Unauthorized'
           end
         end
   
